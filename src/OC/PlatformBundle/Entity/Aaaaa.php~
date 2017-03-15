@@ -1,0 +1,337 @@
+<?php
+
+namespace OC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+
+/**
+ * Aaaaa
+ *
+ * @ORM\Table(name="Aaaaa")
+ * @ORM\Entity(repositoryClass="GL\GestionBundle\Repository\AaaaaRepository")
+ */
+class Aaaaa
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datede", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $datede;
+    
+    
+    
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateau", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $dateau;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="GL\GestionBundle\Entity\Reglementsyndic", mappedBy="reglement")
+     */
+    private $reglementsyndic;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="GL\GestionBundle\Entity\Societe", inversedBy="societes")
+     */
+    private $societe;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="GL\GestionBundle\Entity\Contrat",mappedBy="contrat", cascade={"persist", "remove"})
+      * @var type
+     */
+    private $contrat;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="GL\GestionBundle\Entity\Avoir", mappedBy="reglement", cascade={"persist", "remove"})
+     */
+    private $avoirs;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="GL\GestionBundle\Entity\Local", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $Local;
+    
+ 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="syndicestimer", type="integer")
+     */
+    public $syndicestimer;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="syndicreel", type="float")
+     */
+    private $syndicreel;
+    
+       
+     public function __construct()
+    {
+       
+        $this->datede = new \DateTime();
+        $this->dateau = new \DateTime();
+        $this->contrat = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->avoirs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reglementsyndic = new \Doctrine\Common\Collections\ArrayCollection();
+
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set datede
+     *
+     * @param \DateTime $datede
+     *
+     * @return Aaaaa
+     */
+    public function setDatede($datede)
+    {
+        $this->datede = $datede;
+
+        return $this;
+    }
+
+    /**
+     * Get datede
+     *
+     * @return \DateTime
+     */
+    public function getDatede()
+    {
+        return $this->datede;
+    }
+    
+    /**
+     * Set dateau
+     *
+     * @param \DateTime $datede
+     *
+     * @return Aaaaa
+     */
+    public function setdateau($dateau)
+    {
+        $this->dateau = $dateau;
+
+        return $this;
+    }
+
+    /**
+     * Get dateau
+     *
+     * @return \DateTime
+     */
+    public function getdateau()
+    {
+        return $this->dateau;
+    }
+    
+    /**
+     * Set syndicestimer
+     *
+     * @param float $syndicestimer
+     *
+     * @return Aaaaa
+     */
+    public function setsyndicestimer($syndicestimer)
+    {
+        $this->syndicestimer = $syndicestimer;
+
+        return $this;
+    }
+
+    /**
+     * Get syndicestimer
+     *
+     * @return float
+     */
+    public function getsyndicestimer()
+    {
+        return $this->syndicestimer;
+    }
+    
+    /**
+     * Set syndicreel
+     *
+     * @param float $syndicreel
+     *
+     * @return Aaaaa
+     */
+    public function setsyndicreel($syndicreel)
+    {
+        $this->syndicreel = $syndicreel;
+
+        return $this;
+    }
+
+    /**
+     * Get syndicreel
+     *
+     * @return float
+     */
+    public function getsyndicreel()
+    {
+        return $this->syndicreel;
+    }
+    
+     
+    /**
+     * Set Reglementsyndic
+     *
+     * @param \GL\GestionBundle\Entity\Reglementsyndic $Reglementsyndic
+     *
+     * @return Aaaaa
+     */
+    public function setReglementsyndic(\GL\GestionBundle\Entity\Reglementsyndic $Reglementsyndic = null)
+    {
+        $this->Reglementsyndic = $Reglementsyndic;
+
+        return $this;
+    }
+     /**
+     * Get Reglementsyndic
+     *
+     * @return \GL\GestionBundle\Entity\Reglementsyndic
+     */
+    public function getReglementsyndic()
+    {
+        return $this->reglementsyndic;
+    }
+
+    /**
+     * Set Societe
+     *
+     * @param \GL\GestionBundle\Entity\Societe $societe
+     *
+     * @return Aaaaa
+     */
+    public function setsociete(\GL\GestionBundle\Entity\Societe $societe = null)
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+    /**
+     * Get societe
+     *
+     * @return \GL\GestionBundle\Entity\Societe
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+    
+    
+    
+    /**
+     * Set local
+     *
+     * @param \GL\GestionBundle\Entity\Local $local
+     *
+     * @return Aaaaa
+     */
+    public function setlocal(\GL\GestionBundle\Entity\Local $local = null)
+    {
+        $this->Local = $local;
+
+        return $this;
+    }
+     /**
+     * Get local
+     *
+     * @return \GL\GestionBundle\Entity\Local
+     */
+    public function getlocal()
+    {
+        return $this->Local;
+    }  
+    /**
+     * Set contrat
+     *
+     * @param \GL\GestionBundle\Entity\Contrat $contrat
+     *
+     * @return Aaaaa
+     */
+    public function setContrat(\GL\GestionBundle\Entity\Contrat $contrat = null)
+    {
+        $this->contrat = $contrat;
+
+        return $this;
+    }
+
+    /**
+     * Get contrat
+     *
+     * @return \GL\GestionBundle\Entity\Contrat
+     */
+    public function getContrat()
+    {
+        return $this->contrat;
+    }
+
+    /**
+     * Add avoir
+     *
+     * @param \GL\GestionBundle\Entity\Avoir $avoir
+     *
+     * @return Aaaaa
+     */
+    public function addAvoir(\GL\GestionBundle\Entity\Avoir $avoir)
+    {
+        $this->avoirs[] = $avoir;
+        $avoir->setAaaaa($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove avoir
+     *
+     * @param \GL\GestionBundle\Entity\Avoir $avoir
+     */
+    public function removeAvoir(\GL\GestionBundle\Entity\Avoir $avoir)
+    {
+        $this->avoirs->removeElement($avoir);
+    }
+
+    /**
+     * Get avoirs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvoirs()
+    {
+        return $this->avoirs;
+    }
+}

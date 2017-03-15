@@ -1,0 +1,177 @@
+{% extends 'SonataAdminBundle:CRUD:editsyndic.html.twig' %}
+
+{% block form %}
+    {{ parent() }}
+   <script>
+       $(document).ready(function () {
+
+           $("input[id$='syndicestimer']").change(function () {
+               var syndicestimer = $("input[id$='syndicestimer']").val();
+               var retenues = $("input[id$='retenues']").val();
+               var timbrefiscal = $("input[id$='timbrefiscal']").val();
+               var tva = $("input[id$='tva']").val();
+
+               var somme = 0;
+
+
+               if (parseFloat(syndicestimer) && parseFloat(retenues) && parseFloat(timbrefiscal)) {
+                   somme = parseFloat(parseFloat(syndicestimer) + parseFloat(retenues) + parseFloat(timbrefiscal));
+                   $("input[id$='montanttotaleHT']").val(somme.toFixed(2));
+                   if (parseFloat(tva)) {
+                       $("input[id$='montanttva']").val(parseFloat((somme * parseFloat(tva)) / 100).toFixed(2));
+                       $("input[id$='montanttotalTTC']").val(parseFloat(parseFloat(somme) + parseFloat($("input[id$='montanttva']").val())).toFixed(2));
+                   }
+                   else {
+                       $("input[id$='montanttva']").val(0);
+                       $("input[id$='montanttotalTTC']").val(somme.toFixed(2));
+                   }
+               }
+           });
+
+
+           $("input[id$='retenues']").change(function () {
+               var syndicestimer = $("input[id$='syndicestimer']").val();
+               var retenues = $("input[id$='retenues']").val();
+               var timbrefiscal = $("input[id$='timbrefiscal']").val();
+               var tva = $("input[id$='tva']").val();
+
+               var somme = 0;
+
+
+               if (parseFloat(syndicestimer) && parseFloat(retenues) && parseFloat(timbrefiscal)) {
+                   somme = parseFloat(parseFloat(syndicestimer) + parseFloat(retenues) + parseFloat(timbrefiscal));
+                   $("input[id$='montanttotalHT']").val(somme.toFixed(2));
+                   if (parseFloat(tva)) {
+                       $("input[id$='montanttva']").val(parseFloat((somme * parseFloat(tva)) / 100).toFixed(2));
+                       $("input[id$='montanttotalTTC']").val(parseFloat(parseFloat(somme) + parseFloat($("input[id$='montanttva']").val())).toFixed(2));
+                   }
+                   else {
+                       $("input[id$='montanttva']").val(0);
+                       $("input[id$='montanttotalTTC']").val(somme.toFixed(2));
+                   }
+               }
+           });
+
+           $("input[id$='timbrefiscal']").change(function () {
+               var syndicestimer = $("input[id$='syndicestimer']").val();
+               var retenues = $("input[id$='retenues']").val();
+               var timbrefiscal = $("input[id$='timbrefiscal']").val();
+               var tva = $("input[id$='tva']").val();
+
+               var somme = 0;
+
+
+               if (parseFloat(syndicestimer) && parseFloat(retenues) && parseFloat(timbrefiscal)) {
+                   somme = parseFloat(parseFloat(syndicestimer) + parseFloat(retenues) + parseFloat(timbrefiscal));
+                   $("input[id$='montanttotalHT']").val(somme.toFixed(2));
+                   if (parseFloat(tva)) {
+                       $("input[id$='montanttva']").val(parseFloat((somme * parseFloat(tva)) / 100).toFixed(2));
+                       $("input[id$='montanttotalTTC']").val(parseFloat(parseFloat(somme) + parseFloat($("input[id$='montanttva']").val())).toFixed(2));
+                   }
+                   else {
+                       $("input[id$='montanttva']").val(0);
+                       $("input[id$='montanttotalTTC']").val(somme.toFixed(2));
+                   }
+               }
+           });
+
+           $("input[id$='tva']").change(function () {
+               var syndicestimer = $("input[id$='syndicestimer']").val();
+               var retenues = $("input[id$='retenues']").val();
+               var timbrefiscal = $("input[id$='timbrefiscal']").val();
+               var tva = $("input[id$='tva']").val();
+
+               var somme = 0;
+
+
+               if (parseFloat(syndicestimer) && parseFloat(retenues) && parseFloat(timbrefiscal)) {
+                   somme = parseFloat(parseFloat(syndicestimer) + parseFloat(retenues) + parseFloat(timbrefiscal));
+                   $("input[id$='montanttotaleHT']").val(somme.toFixed(2));
+                   if (parseFloat(tva)) {
+                       $("input[id$='montantTVA']").val(parseFloat((somme * parseFloat(tva)) / 100).toFixed(2));
+                       $("input[id$='montanttotalTTC']").val(parseFloat(parseFloat(somme) + parseFloat($("input[id$='montanttva']").val())).toFixed(2));
+                   }
+                   else {
+                       $("input[id$='montanttva']").val(0);
+                       $("input[id$='montanttotalTTC']").val(somme.toFixed(2));
+                   }
+               }
+           });
+
+
+
+/////////////////
+           var intialMode = $("select[id$='modepaiement']").val();
+           if( intialMode != 'Chèque'  ){
+
+
+               if($("input[id$='_cheques_0_montant']").val())
+               {
+
+               }else{
+                   $("span[id^='field_widget'][id$='_cheques']").remove();
+                   $("div[id$='_cheques']").hide();
+               }
+
+           }
+           if( intialMode != 'Traite' ){
+
+               if($("input[id$='_traites_0_montant']").val())
+               {
+
+               }else{
+                   $("span[id^='field_widget'][id$='_traites']").remove();
+                   $("div[id$='_traites']").hide();
+               }
+
+           }
+           if( intialMode != 'Virement' ){
+               if($("input[id$='_virements_0_montant']").val())
+               {
+
+               }else{
+                   $("span[id^='field_widget'][id$='_virements']").remove();
+                   $("div[id$='_virements']").hide();
+               }
+
+           }
+
+           $("select[id$='modePaiement']").change(function () {
+               var mode = $(this).val();
+
+               var chequesContainer = $("div[id$='_cheques']");
+               var cheques = $("span[id^='field_widget'][id$='_cheques']");
+
+               var traitesContainer = $("div[id$='_traites']");
+               var traites = $("span[id^='field_widget'][id$='_traites']");
+
+               var virementsContainer = $("div[id$='_virements']");
+               var virements = $("span[id^='field_widget'][id$='_virements']");
+
+               var especesContainer = $("div[id$='_especes']");
+               var especes = $("span[id^='field_widget'][id$='_especes']");
+
+               if(mode == 'Traite'){
+                  // cheques.remove();
+                  // chequesContainer.hide();
+                   traitesContainer.show();
+               }
+               else if(mode == 'Chèque'){
+                   //traites.remove();
+                //   traitesContainer.hide();
+                   chequesContainer.show();
+               }
+               else if(mode == 'Virement'){
+                  // cheques.remove();
+                   virementsContainer.show();
+                   //traites.remove();
+
+               }else{
+                   especesContainer.show();
+               }
+           });
+
+
+       });
+   </script>
+{% endblock %}

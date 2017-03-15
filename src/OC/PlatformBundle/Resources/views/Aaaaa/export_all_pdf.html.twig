@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        table {
+            width: 100%;
+            border: none;
+            border-collapse: collapse;
+            margin: 0px;
+        }
+
+        th {
+            text-align: center;
+            border: solid 1px #eee;
+            background: #f8f8f8;
+            padding: 5px;
+        }
+
+        td {
+            text-align: center;
+            border: solid 1px #eee;
+            padding: 10px;
+        }
+
+        #footer-left {
+            position: absolute;
+            bottom: 2%;
+            text-align: center;
+        }
+
+        #logo {
+            height: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .label {
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body style="width:100%;">
+<p style="text-align: center">
+    <img id="logo" src="{{ absolute_url(asset('bundles/glgestion/images/logo.png')) }}"/>
+<h2>Gestion Locative</h2>
+</p>
+
+<p style="text-align: center">
+<h4>Gestion_société</h4>
+</p>
+<table align="center" width="100%">
+    <thead>
+    <tr>
+        <th>datede</th>
+        <th>dateau</th>
+        <th>syndicestimer</th>
+        <th>syndicreel</th>        
+    </tr>
+    </thead>
+    <tbody>
+    {% if Aaaaa is defined %}
+        {% for Aaaaa in Aaaaa %}
+            <tr>
+                <td>{{ Aaaaa.datede }}</td>
+               <td>{{ Aaaaa.dateau }}</td>
+               <td>{{ Aaaaa.syndicestimer }}</td>
+               <td>{{ Aaaaa.syndicreel }}</td>
+               
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+</body>
+</html>

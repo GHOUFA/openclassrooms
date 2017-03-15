@@ -1,0 +1,51 @@
+<?php
+
+namespace GL\GestionBundle\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Show\ShowMapper;
+
+class ChequeAdmin extends AbstractAdmin
+{
+    public $supportsPreviewMode = true;
+
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('numero', 'text' ,array('label' => 'N°'))
+            ->add('banque', 'text')
+            ->add('montant', 'number')
+            ->add('dateCheque', 'date', array('label' => "Date"))
+        ;
+    }
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('numero')
+            ->add('banque')
+            ->add('dateCheque')
+        ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('id')
+            ->add('numero',null, array('label' => 'N°'))
+            ->add('banque')
+            ->add('montant')
+            ->add('dateCheque', null, array('label' => "Date", 'format' => 'd/m/Y'))
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ));
+    }
+
+}

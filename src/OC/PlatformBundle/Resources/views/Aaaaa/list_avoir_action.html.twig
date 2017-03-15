@@ -1,0 +1,9 @@
+{% if(object.avoirs|length ==0) %}
+<a href="{{ path('admin_gl_gestion_avoir_create', {'reglement' : object.id }) }}" class="btn btn-sm btn-default">
+    <i class="fa fa-list"></i> Ajouter Avoirs
+</a>
+{% else %}
+    <a href="{{ path('admin_gl_gestion_avoir_edit', {'id' : object.avoirs[0].id ,'reglement' : object.id }) }}" class="btn btn-sm btn-default">
+        <i class="fa fa-list"></i> Modifier Avoirs
+    </a>
+{% endif %}

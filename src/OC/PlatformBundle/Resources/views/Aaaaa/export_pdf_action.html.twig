@@ -1,0 +1,5 @@
+{% if object is defined %}
+    <a href="{{ admin.generateObjectUrl('export_pdf', object) }}" class="sonata-action-element">
+        <i class="fa fa-download"></i> Exporter en PDF
+    </a>
+{% endif %}

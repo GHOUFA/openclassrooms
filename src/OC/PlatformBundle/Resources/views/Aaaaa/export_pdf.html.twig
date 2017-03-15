@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #logo {
+            height: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        th {
+            text-align: center;
+            border: solid 1px #eee;
+            background: #f8f8f8;
+            padding: 20px;
+        }
+
+        td {
+            border: solid 1px #eee;
+            border: solid 1px #eee;
+            padding: 20px;
+        }
+
+        #footer-left {
+            position: absolute;
+            bottom: 2%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body style="width:100%;">
+<p style="text-align: center">
+    <img id="logo" src="{{ absolute_url(asset('bundles/glgestion/images/logo.png')) }}"/>
+<h2>Gestion Locative</h2>
+</p>
+
+<h3 style="text-align: center">Syndic_Societe</h3>
+{% if Aaaaa is defined %}
+    <p>
+        <span class="title">datede : </span>{{ Aaaaa.datede }}
+    </p>
+    <p>
+        <span class="title">dateau : </span>{{ Aaaaa.dateau }}
+    </p>
+    <p>
+        <span class="title">syndicestimer : </span>{{ Aaaaa.syndicestimer }}
+    </p>
+
+{% endif %}
+
+</body>
+</html>
